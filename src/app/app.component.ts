@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng071119';
+  public titleText = 'ng071119';
+  public drawer: MatSidenav;
+
+  public setSidenav(drawer: MatSidenav): void {
+    Promise.resolve().then(() => {
+      this.drawer = drawer;
+    });
+  }
 }
+
