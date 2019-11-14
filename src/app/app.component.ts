@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -11,9 +11,7 @@ export class AppComponent {
   public drawer: MatSidenav;
 
   public setSidenav(drawer: MatSidenav): void {
-    Promise.resolve().then(() => {
-      this.drawer = drawer;
-    });
+    this.drawer = drawer;
   }
 }
 

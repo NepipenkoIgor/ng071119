@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -6,19 +9,13 @@ import { MatSidenav } from '@angular/material';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Input()
   public drawer: MatSidenav;
 
   @Input()
-  public title;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  public title = 'title';
 
   public toggleSideNav() {
     this.drawer.toggle();

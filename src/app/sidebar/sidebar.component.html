@@ -9,9 +9,13 @@
        <mat-icon matListIcon>dashboard</mat-icon>
        Dashboard 2
      </mat-list-item>
+     <mat-list-item>
+       <mat-icon matListIcon>dashboard</mat-icon>
+       <ng-content select=".content"></ng-content>
+     </mat-list-item>
    </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    Content
+   <div #contentContainer></div>
   </mat-sidenav-content>
 </mat-sidenav-container>
