@@ -13,3 +13,11 @@
 .title {
   color: orange;
 }
+
+mat-card {
+  margin: 5px;
+}
+
+.products-search {
+  width: 100%;
+}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
-  MatButtonModule,
-  MatIconModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatGridListModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
@@ -16,7 +16,12 @@ import {
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule {

@@ -17,6 +17,12 @@ export class HeaderComponent {
   @Input()
   public title = 'title';
 
+  public rates: {value: number, currency: string}[] = [
+    {value: 50, currency: 'USD'},
+    {value: 65, currency: 'EUR'},
+    {value: 3, currency: 'UAH'},
+  ]
+
   public toggleSideNav() {
     this.drawer.toggle();
   }

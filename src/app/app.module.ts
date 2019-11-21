@@ -7,6 +7,11 @@ import { MatButtonModule } from '@angular/material';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProductsFilterPipe } from './products-filter.pipe';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
+import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
+import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 
 // NgModule => es6;
 // declarations => let/const
@@ -17,7 +22,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProductsFilterPipe,
+    ProductCardComponent,
+    ExchangeRatesComponent,
+    ExchangeRatesDirective,
+    HiddenDirective
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import {  Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatCheckboxChange, MatSidenav } from '@angular/material';
 import { IProduct, products$ } from '../mock/products';
 import { Observable } from 'rxjs';
 
@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   public titleText = 'ng071119';
   public drawer: MatSidenav;
+  public searchTerm: string;
+  public onlyFavorites: boolean;
   public products$: Observable<IProduct[]> = products$;
 
   public ngOnInit(): void {
@@ -19,6 +21,18 @@ export class AppComponent implements OnInit {
 
   public setSidenav(drawer: MatSidenav): void {
     this.drawer = drawer;
+  }
+
+  public search(event: Event) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+  }
+
+  public toggleOnlyFavorites(e: MatCheckboxChange): void {
+    this.onlyFavorites = e.checked;
+  }
+
+  public trackByFn(index: number, product: IProduct): string {
+    return product._id;
   }
 }
 
