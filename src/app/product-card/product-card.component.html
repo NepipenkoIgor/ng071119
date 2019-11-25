@@ -6,6 +6,6 @@
   </mat-card-header>
   <img mat-card-image [src]="product.img" alt="">
   <mat-card-actions>
-    <button mat-button> Add to cart</button>
+    <button mat-button (click)="addToCart()"> Add to cart</button>
   </mat-card-actions>
 </mat-card>

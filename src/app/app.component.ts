@@ -1,7 +1,8 @@
-import {  Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange, MatSidenav } from '@angular/material';
 import { IProduct, products$ } from '../mock/products';
 import { Observable } from 'rxjs';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,13 @@ export class AppComponent implements OnInit {
   public drawer: MatSidenav;
   public searchTerm: string;
   public onlyFavorites: boolean;
-  public products$: Observable<IProduct[]> = products$;
+  public products$: Observable<IProduct[]> = this.productsService.getProducts();
+
+  public constructor(
+    private productsService: ProductsService
+  ) {
+  }
+
 
   public ngOnInit(): void {
   }
