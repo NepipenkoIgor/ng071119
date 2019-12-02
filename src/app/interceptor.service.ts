@@ -16,7 +16,7 @@ export class InterceptorService implements HttpInterceptor {
     req.clone({responseType: 'json'});
     const headers: HttpHeaders = req.headers
       .append('Content-type', 'json')
-      .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imlnb3IiLCJpYXQiOjE1NjQxMzY0Nzd9.bgLlbxJjFs7OKLLu3FhboCqKXDDT4VZiCZNofjvWw68');
+      .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imlnb3Jwcm9kIiwiaWF0IjoxNTc1MzExMDAwfQ.LHNSiWnhIgARfpuygLvdNw3oAcwcogD4SRXd06MJsWc');
     const jsonReq = req.clone(
       {
         headers,

@@ -1,7 +1,6 @@
-import { Component, Host, Input, OnInit, Optional, SkipSelf } from '@angular/core';
-import { IProduct } from '../../mock/products';
-import { ProductsService } from '../products.service';
-import { ModalService } from '../modal/modal.service';
+import { Component, Host, Inject, Input, OnInit, Optional, SkipSelf } from '@angular/core';
+import { IProduct } from '../../../../../../mock/products';
+import { ModalService } from '../../../../../modal/modal.service';
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
 
 @Component({
@@ -17,13 +16,12 @@ export class ProductCardComponent implements OnInit {
   public isOdd: boolean;
 
   constructor(
-    private modalService: ModalService
-    //  @Optional() private productsService: ProductsService
+    private modalService: ModalService,
   ) {
   }
 
   ngOnInit() {
-    // this.productsService.getProducts('ProductCardComponent');
+
   }
 
   public addToCart(): void {

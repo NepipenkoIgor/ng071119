@@ -7,10 +7,12 @@ import {
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   exports: [
+    CommonModule,
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,

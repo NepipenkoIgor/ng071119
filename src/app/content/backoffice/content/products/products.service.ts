@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProduct } from '../mock/products';
+import { IProduct } from '../../../../../mock/products';
+import { Inject, Optional } from '@angular/core';
+import { BASE_URL_TOKEN } from '../../../../config';
 
-@Injectable()
 export class ProductsService {
 
   constructor(
-    private http: HttpClient,
+   @Inject(HttpClient) private http: HttpClient,
+    @Inject(BASE_URL_TOKEN) private baseUrl: string
   ) {
+    console.log(baseUrl);
   }
 
   public getProducts(): Observable<IProduct[]> {

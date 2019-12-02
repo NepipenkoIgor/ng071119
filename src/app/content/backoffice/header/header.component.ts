@@ -1,16 +1,15 @@
 import {
   Component,
-  Input, OnInit, Optional, SkipSelf,
+  Input,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Input()
   public drawer: MatSidenav;
@@ -24,13 +23,6 @@ export class HeaderComponent implements OnInit {
     {value: 65, currency: 'EUR'},
     {value: 3, currency: 'UAH'},
   ];
-
-  constructor(
-  ) {
-  }
-
-  public ngOnInit(): void {
-  }
 
   public toggleSideNav() {
     this.drawer.toggle();

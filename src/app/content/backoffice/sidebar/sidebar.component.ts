@@ -6,13 +6,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../content/products/products.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  // viewProviders: [ProductsService] TODO: why?
 })
 export class SidebarComponent implements OnInit {
 

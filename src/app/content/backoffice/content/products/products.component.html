@@ -1,0 +1,16 @@
+<mat-form-field class="products-search">
+  <input matInput type="text" placeholder="Search products" (input)="search($event)">
+</mat-form-field>
+
+<mat-checkbox (change)="toggleOnlyFavorites($event)">Show favorites only</mat-checkbox>
+<mat-grid-list cols="4" [rowHeight]="500" *ngIf="products$ | async as products; else loader">
+  <mat-grid-tile
+    *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites; odd as isOdd; trackBy: trackByFn">
+    <app-product-card [product]="product" [isOdd]="isOdd"></app-product-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<ng-template #loader>
+  <div class="load-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
