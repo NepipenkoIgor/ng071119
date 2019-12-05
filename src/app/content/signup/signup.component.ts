@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { BackofficeComponent } from '../backoffice/backoffice.component';
+import { Routes } from '../../config';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate([`/${Routes.LOGIN}`]);
   }
 
 }

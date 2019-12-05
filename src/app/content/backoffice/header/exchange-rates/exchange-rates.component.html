@@ -2,11 +2,11 @@
   (mouseenter)="cPrev.show();cNext.show()"
   (mouseleave)="cPrev.hide();cNext.hide()"
  >
-  <button mat-button (click)="ctrl.prev()" appHidden #cPrev="hd">
+  <button mat-button (click)="ctrl.prev()" appHidden #cPrev="appHidden">
     <mat-icon matListIcon>keyboard_arrow_left</mat-icon>
   </button>
   <span>{{rate.value | currency: rate.currency : 'symbol-narrow'}}</span>
-  <button mat-button (click)="ctrl.next()" appHidden #cNext="hiddenControl">
+  <button mat-button (click)="ctrl.next()" appHidden #cNext="appHidden">
     <mat-icon matListIcon>keyboard_arrow_right</mat-icon>
   </button>
 </div>

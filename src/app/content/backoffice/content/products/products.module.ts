@@ -6,22 +6,35 @@ import { ProductsFilterPipe } from './products-filter.pipe';
 import { ProductsService } from './products.service';
 import { CardConfirmModalComponent } from './product-card/card-confirm-modal/card-confirm-modal.component';
 import { RouterModule } from '@angular/router';
+import { OneProductComponent } from './one-product/one-product.component';
+import { OneProductResolveService } from './one-product/one-product-resolve.service';
 
 
 @NgModule({
   declarations: [ProductsComponent, ProductsFilterPipe,
-    ProductCardComponent, CardConfirmModalComponent],
+    ProductCardComponent, CardConfirmModalComponent, OneProductComponent],
   imports: [
     SharedModule,
     RouterModule.forChild([
       {
         path: '',
         component: ProductsComponent
+      },
+      {
+        path: ':id', // TODO could be with ? ???
+        component: OneProductComponent,
+        data: {
+          title: 'One product page'
+        },
+        resolve: {
+          product: OneProductResolveService
+        }
       }
     ])
   ],
   providers: [
     ProductsService,
+    OneProductResolveService
   ],
   entryComponents: [CardConfirmModalComponent],
 })

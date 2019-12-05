@@ -8,6 +8,8 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NameValidatorDirective } from './directives/name-validator.directive';
 
 
 @NgModule({
@@ -23,8 +25,11 @@ import { CommonModule } from '@angular/common';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
-  ]
+    MatCheckboxModule,
+    FormsModule,
+    NameValidatorDirective
+  ],
+  declarations: [NameValidatorDirective]
 })
 export class SharedModule {
 }

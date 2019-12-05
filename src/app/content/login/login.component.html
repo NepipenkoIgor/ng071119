@@ -1,1 +1,26 @@
-<p [routerLink]="['/signup']" >Go to SignUp</p>
+<div class="login-content">
+  <mat-card>
+    <form #f="ngForm" (submit)="login(f.value)">
+      <p>Login to continue</p>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="User name"
+               ngModel #c="ngModel" name="username"
+               required
+               appNameValidator
+               minlength="6"
+        >
+        <mat-error *ngIf="c.errors && c.errors.onlyLetters">{{c.errors.onlyLetters}} </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Password" ngModel name="password"
+               required
+               minlength="6"
+        >
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Login</button>
+      <a mat-button [routerLink]="['/signup']">Go to Sign Up</a>
+    </form>
+  </mat-card>
+</div>
+
+<input type="text" (input)="onInput()" >

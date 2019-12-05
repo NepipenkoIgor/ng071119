@@ -2,7 +2,7 @@ import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[appHidden]',
-  exportAs: 'hiddenControl,hd,control'
+  exportAs: 'appHidden'
 })
 export class HiddenDirective {
 

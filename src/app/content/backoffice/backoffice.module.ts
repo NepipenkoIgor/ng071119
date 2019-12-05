@@ -26,7 +26,7 @@ import { SharedModule } from '../../shared/shared.module';
       component: BackofficeComponent,
       children: [{
         path: '',
-        loadChildren: './products/products.module#ProductsModule'
+        loadChildren: () => import('./content/products/products.module').then(mod => mod.ProductsModule)
       }]
     }])
   ]

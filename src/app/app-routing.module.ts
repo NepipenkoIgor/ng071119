@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { PreloadService } from './preload.service';
+import { AuthGuardService } from './auth-guard.service';
+import { Routes } from './config';
 
 const routes: Route[] = [
   {
@@ -8,17 +11,19 @@ const routes: Route[] = [
     redirectTo: 'backoffice'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./content/login/login.module').then(mod => mod.LoginModule)
+    path: Routes.LOGIN,
+    loadChildren: () => import('./content/login/login.module').then(mod => mod.LoginModule),
+    canActivate: [AuthGuardService]
   },
   {
-    path: 'signup',
-    loadChildren: () => import('./content/signup/signup.module').then(mod => mod.SignupModule)
+    path: Routes.SIGNUP,
+    loadChildren: () => import('./content/signup/signup.module').then(mod => mod.SignupModule),
+    canActivate: [AuthGuardService]
   },
   {
-    path: 'backoffice',
-    loadChildren: () => import('./content/backoffice/backoffice.module').then(mod => mod.BackofficeModule)
-
+    path: Routes.BACOFFICE,
+    loadChildren: () => import('./content/backoffice/backoffice.module').then(mod => mod.BackofficeModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',
@@ -28,7 +33,11 @@ const routes: Route[] = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadService})
+  ],
+  providers: [
+    PreloadService,
+    AuthGuardService
   ],
   exports: [RouterModule]
 })
