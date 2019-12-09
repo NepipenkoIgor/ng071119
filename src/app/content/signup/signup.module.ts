@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './signup.component';
+import { SharedModule } from '../../shared/shared.module';
+import { SwitcherComponent } from './switcher/switcher.component';
 
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SignupComponent,
+    SwitcherComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',

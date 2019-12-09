@@ -1,1 +1,46 @@
-<p (click)="goToLogin()">Go to Login</p>
+<div class="login-content">
+  <mat-card>
+    <form [formGroup]="signupForm">
+      <p>Signup to continue</p>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="User name" name="username"
+               [formControl]="signupForm.get('username')"
+        >
+        <mat-error *ngIf="signupForm.get('username').errors && signupForm.get('username').errors.onlyLetters">
+          {{signupForm.get('username').errors.onlyLetters}} </mat-error>
+
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let c of getControls(signupForm, 'emails'); index as i; first as f">
+        <mat-form-field fxFlex="90">
+          <input matInput type="text" placeholder="Email" [formControl]="c">
+        </mat-form-field>
+        <div  fxFlex="10" fxLayout="row">
+          <mat-icon (click)="addEmail()" *ngIf="f">add</mat-icon>
+          <mat-icon *ngIf="getControls(signupForm, 'emails').length > 1" (click)="removeEmail(i)">delete</mat-icon>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <span>Male</span>
+        <app-switcher formControlName="male"></app-switcher>
+      </div>
+
+      <div formGroupName="password">
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Password"
+                 formControlName="password"
+          >
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Confirm Password"
+                 formControlName="cpassword"
+          >
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid || signupForm.pending">Signup</button>
+      <a mat-button (click)="goToLogin()">Go to Sign Up</a>
+    </form>
+    <pre>{{signupForm.value  | json}}</pre>
+  </mat-card>
+</div>
+

@@ -8,8 +8,9 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NameValidatorDirective } from './directives/name-validator.directive';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { NameValidatorDirective } from './directives/name-validator.directive';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    NameValidatorDirective
+    ReactiveFormsModule,
+    NameValidatorDirective,
+    FlexLayoutModule
   ],
   declarations: [NameValidatorDirective]
 })

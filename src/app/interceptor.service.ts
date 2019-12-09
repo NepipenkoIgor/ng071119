@@ -26,7 +26,15 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(jsonReq)
       .pipe(
         filter(this.isHttpResponse),
-        map((res) => res.clone({body: res.body && res.body.data}))
+        map((res) => {
+          console.log(res)
+          const {data, ...response} = res.body;
+          console.log(data, response);
+          if (data === undefined) {
+            return res.clone({body: response});
+          }
+          return res.clone({body: data});
+        })
       );
   }
 
