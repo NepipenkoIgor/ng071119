@@ -15,8 +15,9 @@ export class InterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // req.clone({responseType: 'json'});
     const headers: HttpHeaders = req.headers
-      .append('Content-type', 'json');
+      .append('Content-type', 'application/json');
       // .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imlnb3Jwcm9kIiwiaWF0IjoxNTc1MzExMDAwfQ.LHNSiWnhIgARfpuygLvdNw3oAcwcogD4SRXd06MJsWc');
+    console.log(req.body)
     const jsonReq = req.clone(
       {
         headers,
