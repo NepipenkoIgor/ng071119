@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IStore } from '../../store';
+import { loginPending } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +10,13 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  public login(loginObj: { username: string, password: string }): void {
-    console.log(loginObj);
+  public constructor(
+    private readonly store: Store<IStore>
+  ) {
+  }
+
+  public login(user: { username: string, password: string }): void {
+    this.store.dispatch(loginPending({user}));
   }
 
 }

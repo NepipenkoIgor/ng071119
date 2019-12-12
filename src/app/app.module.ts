@@ -5,9 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BASE_URL, BASE_URL_TOKEN } from './config';
-import { InterceptorService } from './interceptor.service';
+import { InterceptorService } from './shared/services/interceptor.service';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './store/effects';
 
 // NgModule => es6;
 // declarations => let/const
@@ -22,19 +27,25 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule.forRoot(),
     ModalModule.forRoot(),
-    AppRoutingModule
-  ],
-  providers: [
-    {provide: BASE_URL_TOKEN, useValue: BASE_URL},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      features: {
+        pause: false,
+        lock: true,
+        persist: true
+      }
+    }),
+    EffectsModule.forRoot(effects)
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+
+
+// TODO - что с серверо ?

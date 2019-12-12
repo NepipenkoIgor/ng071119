@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BASE_URL_TOKEN } from './config';
+import { BASE_URL_TOKEN } from '../../config';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable()
@@ -13,10 +13,10 @@ export class InterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req.clone({responseType: 'json'});
+    // req.clone({responseType: 'json'});
     const headers: HttpHeaders = req.headers
-      .append('Content-type', 'json')
-      .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imlnb3Jwcm9kIiwiaWF0IjoxNTc1MzExMDAwfQ.LHNSiWnhIgARfpuygLvdNw3oAcwcogD4SRXd06MJsWc');
+      .append('Content-type', 'json');
+      // .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imlnb3Jwcm9kIiwiaWF0IjoxNTc1MzExMDAwfQ.LHNSiWnhIgARfpuygLvdNw3oAcwcogD4SRXd06MJsWc');
     const jsonReq = req.clone(
       {
         headers,

@@ -1,6 +1,6 @@
 <div class="login-content">
   <mat-card>
-    <form [formGroup]="signupForm">
+    <form [formGroup]="signupForm" (submit)="signup(signupForm.value)">
       <p>Signup to continue</p>
       <mat-form-field class="full-width">
         <input matInput type="text" placeholder="User name" name="username"
@@ -10,11 +10,12 @@
           {{signupForm.get('username').errors.onlyLetters}} </mat-error>
 
       </mat-form-field>
-      <div fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let c of getControls(signupForm, 'emails'); index as i; first as f">
+      <div fxLayout="row" fxLayoutAlign="space-around center"
+           *ngFor="let c of getControls(signupForm, 'emails'); index as i; first as f">
         <mat-form-field fxFlex="90">
           <input matInput type="text" placeholder="Email" [formControl]="c">
         </mat-form-field>
-        <div  fxFlex="10" fxLayout="row">
+        <div fxFlex="10" fxLayout="row">
           <mat-icon (click)="addEmail()" *ngIf="f">add</mat-icon>
           <mat-icon *ngIf="getControls(signupForm, 'emails').length > 1" (click)="removeEmail(i)">delete</mat-icon>
         </div>
@@ -37,10 +38,11 @@
           >
         </mat-form-field>
       </div>
-      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid || signupForm.pending">Signup</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid || signupForm.pending">
+        Signup
+      </button>
       <a mat-button (click)="goToLogin()">Go to Sign Up</a>
     </form>
-    <pre>{{signupForm.value  | json}}</pre>
   </mat-card>
 </div>
 

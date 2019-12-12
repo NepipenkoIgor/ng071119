@@ -5,6 +5,9 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { Observable, of } from 'rxjs';
 import { delay, map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { IStore } from '../../store';
+import { signupPending } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +22,7 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
+    private store: Store<IStore>,
   ) {
   }
 
@@ -39,6 +43,10 @@ export class SignupComponent implements OnInit {
         validators: [this.equalValidator]
       }),
     });
+  }
+
+  signup({username, password: {password}}: any) {
+    this.store.dispatch(signupPending({user: {username, password}}));
   }
 
   goToLogin() {
