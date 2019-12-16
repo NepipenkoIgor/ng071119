@@ -1,33 +1,38 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { Inject } from '@angular/core';
+import { filter, switchMap } from 'rxjs/operators';
 import { Routes } from './config';
+import { IStore } from './store';
+import { go } from './store/actions/router.actions';
+import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 
 
+@Injectable()
 export class AuthGuardService implements CanActivate {
 
   constructor(
-    @Inject(Router) private router: Router
+    private store: Store<IStore>
   ) {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const url = state.url;
-    return of(false)
+    return this.store.select('auth')
       .pipe(
-        switchMap((isLoggin: boolean) => {
-          if (!isLoggin && (url === `/${Routes.LOGIN}` || url === `/${Routes.SIGNUP}`)) {
+        filter(({loading}) => !loading),
+        switchMap(({isLogged}) => {
+          if (!isLogged && (url === `/${Routes.LOGIN}` || url === `/${Routes.SIGNUP}`)) {
             return of(true);
           }
-          if (isLoggin && (url === `/${Routes.LOGIN}` || url === `/${Routes.SIGNUP}`)) {
-            this.router.navigate([`/${Routes.BACOFFICE}` ]);
+          if (isLogged && (url === `/${Routes.LOGIN}` || url === `/${Routes.SIGNUP}`)) {
+            this.store.dispatch(go({payload: {path: [`/${Routes.BACOFFICE}`]}}));
             return of(false);
           }
-          if (!isLoggin) {
-            this.router.navigate([`/${Routes.LOGIN}` ]);
+          if (!isLogged) {
+            this.store.dispatch(go({payload: {path: [`/${Routes.LOGIN}`]}}));
           }
-          return of(isLoggin);
+          return of(isLogged);
         })
       );
   }

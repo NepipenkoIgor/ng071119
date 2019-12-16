@@ -1,9 +1,9 @@
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { IProduct } from '../../../../../../mock/products';
 import { Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
 
 
 export class OneProductResolveService implements Resolve<IProduct | null> {

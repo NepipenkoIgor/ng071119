@@ -1,7 +1,10 @@
-import { Component, Host, Inject, Input, OnInit, Optional, SkipSelf } from '@angular/core';
-import { IProduct } from '../../../../../../mock/products';
+import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { ModalService } from '../../../../../modal/modal.service';
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
+import { IStore } from '../../../../../store';
+import { Store } from '@ngrx/store';
+import { addProductToCart } from '../../../../../store/actions/cart.actions';
 
 @Component({
   selector: 'app-product-card',
@@ -17,6 +20,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
+    private cfr: ComponentFactoryResolver,
+    private store: Store<IStore>,
   ) {
   }
 
@@ -27,10 +32,12 @@ export class ProductCardComponent implements OnInit {
   public addToCart(): void {
     this.modalService.open({
       component: CardConfirmModalComponent,
+      cfr: this.cfr,
       context: {
         product: this.product,
         save: () => {
           console.log('Add to cart');
+          this.store.dispatch(addProductToCart({product: this.product}));
           this.modalService.close();
         },
         close: () => {

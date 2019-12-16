@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loginPending, loginSuccess, signupPending, signupSuccess } from '../actions/auth.actions';
+import { checkJWT, loginError, loginPending, loginSuccess, signupPending, signupSuccess } from '../actions/auth.actions';
 
 export interface IAuthState {
   isLogged: boolean;
@@ -13,8 +13,10 @@ export const initialState: IAuthState = {
 
 export const authReducer = createReducer(
   initialState,
+  on(checkJWT, state => ({...state,   loading: true})),
   on(loginPending, state => ({...state,   loading: true})),
   on(loginSuccess, state => ({...state, loading: false, isLogged: true })),
+  on(loginError, state => ({...state, loading: false, isLogged: false })),
   on(signupPending, state => ({...state,   loading: true})),
   on(signupSuccess, state => ({...state, loading: false, isLogged: true })),
 );

@@ -6,7 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { ProductsService } from '../content/products/products.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -26,7 +25,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.productsService.getProducts();
     this.setSideNavControl.emit(this.drawer);
   }
 

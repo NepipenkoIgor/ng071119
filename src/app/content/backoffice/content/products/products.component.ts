@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCheckboxChange, MatSidenav } from '@angular/material';
 import { Observable } from 'rxjs';
-import { IProduct } from '../../../../../mock/products';
-import { ProductsService } from './products.service';
+import { IStore } from '../../../../store';
+import { Store } from '@ngrx/store';
+import { IProduct } from '../../../../store/reducers/products.reducer';
+import { getProductsPending } from '../../../../store/actions/product.actions';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   public searchTerm: string;
   public onlyFavorites: boolean;
-  public products$: Observable<IProduct[]> = this.productsService.getProducts();
+  //@ts-ignore
+  public products$: Observable<IProduct[]> = this.store.select<IProduct[]>('products');
 
   public constructor(
-    private productsService: ProductsService
+    private store: Store<IStore>
   ) {
+  }
+
+  public ngOnInit(): void {
+    this.store.dispatch(getProductsPending());
   }
 
   public trackByFn(index: number, product: IProduct): string {

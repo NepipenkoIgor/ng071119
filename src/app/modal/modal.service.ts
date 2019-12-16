@@ -1,8 +1,10 @@
 import { Observable, Subject } from 'rxjs';
+import { ComponentFactoryResolver } from '@angular/core';
 
 export interface IModalContent {
   component: any;
   context: any;
+  cfr: ComponentFactoryResolver;
 }
 
 export class ModalService {

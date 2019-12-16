@@ -4,4 +4,17 @@
   </button>
   <h3 class="title">{{title}}</h3>
   <app-exchange-rates [rates]="rates"></app-exchange-rates>
+
+  <div class="cart">
+    <mat-icon (click)="isOpen = true"
+              [matBadge]="10" matBadgeColor="warn"
+    >shopping_cart
+    </mat-icon>
+    <app-cart [ngClass]="{closed:!isOpen}"></app-cart>
+  </div>
+
+
+  <button mat-button (click)="logout()">
+    <mat-icon matListIcon>logout</mat-icon>
+  </button>
 </mat-toolbar>

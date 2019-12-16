@@ -1,0 +1,6 @@
+.cart {
+  position: relative;
+}
+.closed {
+  display: none;
+}

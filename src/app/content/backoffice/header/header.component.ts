@@ -3,6 +3,9 @@ import {
   Input,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { Store } from '@ngrx/store';
+import { IStore } from '../../../store';
+import { logoutPending } from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +20,10 @@ export class HeaderComponent {
   @Input()
   public title = 'title';
 
+  public isOpen = false;
+
+  constructor(private store: Store<IStore>) {
+  }
 
   public rates: { value: number, currency: string }[] = [
     {value: 50, currency: 'USD'},
@@ -26,5 +33,9 @@ export class HeaderComponent {
 
   public toggleSideNav() {
     this.drawer.toggle();
+  }
+
+  public logout(): void {
+    this.store.dispatch(logoutPending());
   }
 }

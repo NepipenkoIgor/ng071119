@@ -33,18 +33,18 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.modalService.modalSequence$$
-      .subscribe(({component, context}: IModalContent) => {
+      .subscribe(({component, context, cfr}: IModalContent) => {
         if (!component) {
           this.close();
           return;
         }
         this.isOpen = true;
         this.component  = component;
-        // this.componentFactory = this.cfr.resolveComponentFactory(component);
-        // this.componentRef = this.modal.createComponent(this.componentFactory);
-        // Object.keys(context).forEach((key: string) => {
-        //   this.componentRef.instance[key] = context[key];
-        // });
+        this.componentFactory = cfr.resolveComponentFactory(component);
+        this.componentRef = this.modal.createComponent(this.componentFactory);
+        Object.keys(context).forEach((key: string) => {
+          this.componentRef.instance[key] = context[key];
+        });
       });
   }
 

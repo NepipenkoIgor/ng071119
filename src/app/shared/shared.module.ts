@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
+  MatBadgeModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatGridListModule,
   MatIconModule, MatInputModule,
   MatListModule,
@@ -34,7 +35,8 @@ import { InterceptorService } from './services/interceptor.service';
     FormsModule,
     ReactiveFormsModule,
     NameValidatorDirective,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatBadgeModule
   ],
   declarations: [NameValidatorDirective],
   providers: [
