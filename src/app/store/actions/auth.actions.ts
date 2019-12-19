@@ -40,4 +40,3 @@ export const signupSuccess = createAction(
 export const signupError = createAction(
   '[Signup] Signup error',
 );
-

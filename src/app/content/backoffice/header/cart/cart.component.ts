@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IStore } from '../../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ICartProduct , selectAll} from '../../../../store/reducers/cart.reducer';
-import { incrementProductInCart } from '../../../../store/actions/cart.actions';
+import { ICartProduct, productsWithBonuses, totalPrice } from '../../../../store/reducers/cart.reducer';
+import {
+  changeCountOfProductInCart,
+  decrementProductInCart,
+  incrementProductInCart,
+  removeProductFromCart
+} from '../../../../store/actions/cart.actions';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +18,7 @@ import { incrementProductInCart } from '../../../../store/actions/cart.actions';
 export class CartComponent implements OnInit {
 
   public products$: Observable<ICartProduct[]>;
+  public totalPrice$: Observable<number>;
 
   public constructor(
     private store: Store<IStore>
@@ -20,7 +26,8 @@ export class CartComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.products$ = this.store.select(selectAll);
+    this.products$ = this.store.select(productsWithBonuses);
+    this.totalPrice$ = this.store.select(totalPrice);
   }
 
   public incrementProduct(product: ICartProduct) {
@@ -28,11 +35,16 @@ export class CartComponent implements OnInit {
   }
 
   public decrementProduct(product: ICartProduct) {
-    this.store.dispatch(incrementProductInCart({product}));
+    this.store.dispatch(decrementProductInCart({product}));
   }
 
   public removeProduct(product: ICartProduct) {
-    this.store.dispatch(incrementProductInCart({product}));
+    this.store.dispatch(removeProductFromCart({product}));
+  }
+
+  public changeCount(product: { count: number, id: string }) {
+    console.log(product);
+    this.store.dispatch(changeCountOfProductInCart(product));
   }
 
   public trackProductsBy(_index: number, item: ICartProduct): string {

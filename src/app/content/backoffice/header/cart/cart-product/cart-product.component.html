@@ -1,10 +1,11 @@
 <div fxLayout="row" fxLayoutAlign="space-around center">
-  <img [src]="product.img">
+  <img [src]="currentProduct.img">
   <div fxLayout="row" fxLayoutAlign="space-around center">
     <mat-icon class="decrement" color="primary" (click)="decrementProduct()">remove</mat-icon>
-    <p>{{product.count}}</p>
+    <p>{{currentProduct.count}}</p>
+    <input type="text"  [formControl]="countValue" >
     <mat-icon class="increment" color="primary" (click)="incrementProduct()">add</mat-icon>
   </div>
-  <p>{{product.price}}</p>
+  <p>{{currentProduct.price | number: '1.0-0'}}</p>
   <mat-icon class="remove" color="primary" (click)="removeProduct()">delete</mat-icon>
 </div>

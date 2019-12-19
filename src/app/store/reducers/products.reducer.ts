@@ -1,6 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, createSelector, on } from '@ngrx/store';
 import { setUser } from '../actions/user.actions';
 import { getProductsSuccess } from '../actions/product.actions';
+import { userSelector } from './user.reducer';
 
 export interface IProduct {
   '_id': string;

@@ -7,7 +7,7 @@
 
   <div class="cart">
     <mat-icon (click)="isOpen = true"
-              [matBadge]="10" matBadgeColor="warn"
+              [matBadge]="totalCount$ | async" matBadgeColor="warn"
     >shopping_cart
     </mat-icon>
     <app-cart [ngClass]="{closed:!isOpen}"></app-cart>
